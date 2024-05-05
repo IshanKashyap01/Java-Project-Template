@@ -1,0 +1,34 @@
+name: Continuous Deployment
+
+run-name: Deploying to GitHub Packages
+
+on:
+  pull_request:
+    branches: [main, master]
+
+jobs:
+
+  deploy:
+
+    if: >
+      github.event.pull_request.merged && 
+      contains(github.event.pull_request.labels.*.name, 'version')
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup the JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+      
+      #- name: Deploy to GitHub Packages
+      #  run: mvn -B deploy -DskipTests -f pom.xml
+      #  env:
+      #    PUSH_TO_PACKAGES: ${{ secrets.PUSH_TO_PACKAGES }}

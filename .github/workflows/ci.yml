@@ -1,6 +1,6 @@
 name: Continuous Integration
 
-run-name: CI for Maven
+run-name: Running Unit Tests
 
 on: push
 
@@ -12,7 +12,8 @@ jobs:
 
     steps:
 
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Setup JDK 21
         uses: actions/setup-java@v3
@@ -25,6 +26,3 @@ jobs:
       #  run: mvn -B test -f pom.xml
       #  env:
       #    PULL_FROM_PACKAGES: ${{ secrets.PULL_FROM_PACKAGES }}
-          
-
-            
