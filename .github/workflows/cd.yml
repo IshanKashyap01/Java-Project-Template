@@ -28,6 +28,6 @@ jobs:
           cache: maven
       
       - name: Deploy to GitHub Packages
-        run: mvn -B deploy -DskipTests -f pom.xml
+        run: mvn -B deploy -DskipTests -f my-app/pom.xml
         env:
           PUSH_TO_PACKAGES: ${{ secrets.PUSH_TO_PACKAGES }}
