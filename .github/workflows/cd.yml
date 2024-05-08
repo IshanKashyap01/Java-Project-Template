@@ -25,9 +25,9 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-          #cache: maven
+          cache: maven
       
-      #- name: Deploy to GitHub Packages
-      #  run: mvn -B deploy -DskipTests -f pom.xml
-      #  env:
-      #    PUSH_TO_PACKAGES: ${{ secrets.PUSH_TO_PACKAGES }}
+      - name: Deploy to GitHub Packages
+        run: mvn -B deploy -DskipTests -f pom.xml
+        env:
+          PUSH_TO_PACKAGES: ${{ secrets.PUSH_TO_PACKAGES }}
