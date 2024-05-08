@@ -10,9 +10,7 @@ jobs:
 
   deploy:
 
-    if: >
-      github.event.pull_request.merged && 
-      contains(github.event.pull_request.labels.*.name, 'version')
+    if: ${{ github.event.pull_request.merged && contains(github.event.pull_request.labels.*.name, 'version') }}
 
     runs-on: ubuntu-latest
 
