@@ -11,7 +11,11 @@ jobs:
 
   deploy:
 
-    if: ${{ github.event.pull_request.merged && contains(github.event.pull_request.labels.*.name, 'version') }}
+    env:
+      IS_MERGED: ${{ github.event.pull_request.merged }}
+      IS_VERSION: ${{ contains(github.event.pull_request.labels.name, 'version')}}
+
+    if: github.env.IS_MERGED && github.env.IS_VERSION
 
     runs-on: ubuntu-latest
 
