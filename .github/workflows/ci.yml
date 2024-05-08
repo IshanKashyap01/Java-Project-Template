@@ -10,6 +10,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    permissions:
+      packages: read
+
     steps:
 
       - name: Checkout repository
@@ -20,9 +23,9 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-          #cache: maven
+          cache: maven
       
-      #- name: Test with Maven
-      #  run: mvn -B test -f pom.xml
-      #  env:
-      #    PULL_FROM_PACKAGES: ${{ secrets.PULL_FROM_PACKAGES }}
+      - name: Test with Maven
+        run: mvn -B test -f my-app/pom.xml
+        env:
+          PULL_FROM_PACKAGES: ${{ secrets.GITHUB_TOKEN }}
